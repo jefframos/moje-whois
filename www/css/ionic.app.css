@@ -23,12 +23,14 @@ $dark:                            #444 !default;
   font-style: normal; }
 
 body {
-  text-transform: uppercase !important; }
+  text-transform: uppercase !important;
+}
 
 .pause-modal {
   position: absolute;
   height: 110%;
   width: 100%;
+
   background-color: rgba(14, 67, 81, 0.8);
   z-index: 999; }
 
@@ -66,7 +68,12 @@ body {
   max-width: 58px !important; }
 
 .pane {
-  background: url(../img/pattern.png) repeat #0e4351 !important; }
+
+  background: -webkit-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* Standard syntax */
+}
 
 .card {
   background: transparent !important;
