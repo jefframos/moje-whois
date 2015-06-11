@@ -35,22 +35,26 @@
 						</div>
 
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
-							<div class="pokemon-container">
-								<img  class="img-resize" src="{{ currentQuestion.correctPokemon.url }}">
+							<div class="image-container">
+								<div class="pokemon-container">
+									<img  class="img-resize" src="{{ currentQuestion.correctPokemon.url }}">
+								</div>
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
 							<button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button>
 							<button class="button button-clear white-refresh-ico restart" ng-click="restart()"></button>
 
 							<!-- <h3 class="points">{{points}}</h3> -->
-							<h3 class="time"><i class="icon ion-ios-clock-outline"></i>{{time}}</h3>
+							<h3 class="time">{{time}}</h3>
 
 							<div class="round-container" >
-							  <div class="round round-default" ng-class="{'round-current':currentRound === $index, 'round-correct':round === 1, 'round-wrong':round === -1}" ng-repeat="round in rounds track by $index">{{$index + 1}}</div>
+							  <div class="round round-default" ng-class="{'round-current':currentRound === $index, 'round-correct':round === 1, 'round-wrong':round === -1}" ng-repeat="round in rounds track by $index">
+							  <!-- {{$index + 1}} -->
+							  </div>
 							</div>
 							<div class="buttons-container">
 								<div ng-repeat="question in currentQuestion.options">
-									<button class="button button-block button-clear button-size button-question"  ng-class="{'correct':!waiting && currentQuestion.correctPokemon.name === question}" ng-click="clickQuestion(question)">
+									<button class="button button-block button-clear button-size button-question"  ng-class="{'correct':!waiting && currentQuestion.correctPokemon.name === question, 'wrong':!waiting && lastClicked === question && currentQuestion.correctPokemon.name !== question}" ng-click="clickQuestion(question)">
 										{{ question }}
 									</button>
 								</div>

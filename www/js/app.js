@@ -69,7 +69,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.block = false;
 	$scope.currentRound = 0;
 	$scope.interval = 0;
-	$scope.maxTime = 90999;
+	$scope.maxTime = 5;
 	$scope.gameStatus = 1;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
@@ -85,16 +85,17 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.unPause = function() {
 		$scope.isPause = false;
 		if($scope.inGame){
-			clearInterval($scope.interval);
-			$scope.interval = setInterval(function(){
-				$scope.$apply(function(){
-					$scope.time --;
-					if($scope.time <= 0){
-						clearInterval($scope.interval);
-						$scope.endGame();
-					}
-				})
-			},1000);
+			$scope.startInterval();
+			// clearInterval($scope.interval);
+			// $scope.interval = setInterval(function(){
+			// 	$scope.$apply(function(){
+			// 		$scope.time --;
+			// 		if($scope.time <= 0){
+			// 			clearInterval($scope.interval);
+			// 			$scope.updateRound();
+			// 		}
+			// 	})
+			// },1000);
 		}
 	}
 	for (var i = 0; i < $scope.generations.length; i++) {
@@ -105,6 +106,9 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			$scope.scores.push(0);
 			setSafeCookie('highscores'+i,0);
 		}
+	}
+	$scope.updateRound = function() {
+		$scope.clickQuestion('');
 	}
 	$scope.updateHighscore = function() {
 		var totHighs = 0;
@@ -142,6 +146,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.ableMore = true;
 		$scope.unlock = false;
 		$scope.newHigh = false;
+		$scope.rounds = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	}
 	$scope.resetStatus();
 
@@ -160,6 +165,8 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.resetStatus();
 	}
 	$scope.randomQuestion = function() {
+		$scope.time = $scope.maxTime;
+		$scope.resultAnsware = 'Who is she?';
 		$scope.currentResult = '-';
 		$scope.block = false;
 		$scope.darked = true;
@@ -193,6 +200,8 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		}
 		$scope.currentQuestion.options.push($scope.currentQuestion.correctPokemon.name)
 		$scope.currentQuestion.options = shuffle($scope.currentQuestion.options);
+
+		$scope.startInterval();
 	}
 	$scope.checkGen = function(targetId, add, able) {
 		if(!able){
@@ -247,7 +256,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.gameStatus = 1;
 		$scope.randomQuestion();
 		$scope.currentRound = 0;
-		$scope.startInterval();
+
 
 	}
 
@@ -258,7 +267,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 				$scope.time --;
 				if($scope.time <= 0){
 					clearInterval($scope.interval);
-					$scope.endGame();
+					$scope.updateRound();
 				}
 			})
 		},1000);
@@ -284,6 +293,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		// $scope.backToInit();
 	}
 	$scope.clickQuestion = function(target) {
+		$scope.lastClicked = target;
 		if($scope.block){
 			return
 		}
@@ -306,16 +316,16 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		}
 		$scope.darked = false;
 		$scope.waiting = false;
-		// setTimeout(function(){
-		// 	$scope.$apply(function(){
-		// 		$scope.currentRound ++;
-		// 		if($scope.currentRound >= $scope.rounds.length){
-		// 			$scope.endGame();
-		// 		}else{
-		// 			$scope.randomQuestion();
-		// 		}
-  //       	})
-		// }, 1000);
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.currentRound ++;
+				if($scope.currentRound >= $scope.rounds.length){
+					$scope.endGame();
+				}else{
+					$scope.randomQuestion();
+				}
+        	})
+		}, 1000);
 	}
 
 	$scope.saveScore = function(){

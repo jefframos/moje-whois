@@ -95,27 +95,25 @@ body {
 	box-shadow: none !important;
 	margin: 0 !important; }
 .round-container{
-	/*width: 20%!important;*/
 	position: absolute;
 	left:0;
 	right:0;
 	margin: 0 auto;
-	bottom: 294px;
+	top: 10px;
 	color: #7d77b3;
-
-
+	pointer-events: none;
 }
 .round{
 	/*position: absolute;*/
 	font-family: 'brandon_grotesquemedium' !important;
 	display: inline-block;
-	margin: 0 30px;
-	width: 20px!important;
-	height: 20px!important;
-	border-radius: 20px;
+	margin: 0 5px;
+	width: 10px!important;
+	height: 10px!important;
+	border-radius: 15px;
 }
 .round-current {
-	background-color: #DDD !important;
+	background-color: #7d77b3 !important;
 }
 
 .round-correct {
@@ -124,7 +122,7 @@ body {
 }
 
 .round-wrong {
-	background-color: #ef473a !important;
+	background-color: #ff5e63 !important;
 	color: white;
 }
 
@@ -165,17 +163,16 @@ body {
 
 .time {
 	position: absolute;
-	width: 60px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	right: 40px;
-	top: 40px;
+	top: 0px;
 	margin-left: -30px;
-	padding-right: 5px;
-	line-height: 32px;
-	font-size: 15px;
-	font-family: 'brandon_grotesquelight' !important;
-	color: white;
-	background: #d85054;
+	padding-top: 8px;
+	font-size: 20px;
+	font-family: 'brandon_grotesquemedium' !important;
+	color: #a98235;
+	background: #fff289;
 	border-radius: 20px; }
 	.time i {
 	margin-right: 2px;
@@ -294,7 +291,8 @@ body {
 	left: -30px !important;
 	font-size: 34px !important;
 	margin-bottom: 20px;
-	margin-top: 20px; }
+	margin-top: 20px;
+	}
 	.end-game-modal .restart {
 	position: relative !important;
 	top: 0 !important;
@@ -310,7 +308,7 @@ body {
 
 .pokemon-container {
 	background-color: white;
-	margin: 50px auto 12px;
+	margin: 70px auto 12px;
 	left: 0;
 	right: 0;
 	text-align: center;
@@ -318,6 +316,38 @@ body {
 	width: 200px;
 	overflow: hidden;
 	border-radius: 50%;
+}
+.image-container:after{
+	content:"";
+	position: absolute;
+	display: block;
+	border-style: solid;
+    border-width: 2px;
+	border-color: white;
+	height: 230px!important;
+	width: 230px!important;
+	margin: 0px auto 0px;
+	left: 0;
+	right: 0;
+	top: 56px;
+	border-radius: 50%;
+	opacity: 0.8;
+}
+.image-container:before{
+	content:"";
+	position: absolute;
+	display: block;
+	border-style: solid;
+    border-width: 2px;
+	border-color: white;
+	height: 250px!important;
+	width: 250px!important;
+	margin: 0px auto 0px;
+	left: 0;
+	right: 0;
+	top: 46px;
+	border-radius: 50%;
+	opacity: 0.4;
 }
 .pokemon-container img{
 	width: 250px;
@@ -375,6 +405,9 @@ span {
 	position: relative;
 	border-radius: 0px!important;
 	border: 0 !important; }
+	.button-question:hover{
+		background-color: #efdff7 !important;
+	}
 	.button-question .first-li {
 	display: inline-block;
 	float: left;
@@ -398,11 +431,13 @@ span {
 	transition: all 350ms ease; }
 	.button-question.activated {
 	opacity: 1 !important;
-	top: 2px !important;
 	box-shadow: 0 2px 0 #dfe2e7 !important; }
 	.button-question.correct {
 	background: #44bcb3 !important;
-	color: white !important; }
+	color: white !important;
+	box-shadow: 0 1px 0 #44bcb3 !important;
+	}
+
 	.button-question.wrong {
 	background: #ff5e63 !important;
 	box-shadow: 0 4px 0 #d34e52 !important;
@@ -3228,7 +3263,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	line-height: 1; }
 
 h1, .h1, h2, .h2, h3, .h3 {
-	margin-top: 20px;
 	margin-bottom: 10px; }
 	h1:first-child, .h1:first-child, h2:first-child, .h2:first-child, h3:first-child, .h3:first-child {
 	margin-top: 0; }
