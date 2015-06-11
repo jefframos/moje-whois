@@ -58,11 +58,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.currentQuestion = {};
 	$scope.darked = true;
 	$scope.waiting = true;
-	$scope.resultAnsware = 'CORRECT';
+	$scope.resultAnsware = 'Who is She?';
 	$scope.pageTitle = 'Who is that Pokemón';
 	$scope.isCorrect = false;
 	$scope.inGame = false;
-	$scope.gameStatus = 0;
 	$scope.generations = [[1,151,0],[152,251,100],[252,386,180],[387,493,260],[494,649,400]];
 	$scope.scores = [];
 	$scope.currentGens = [0];
@@ -70,8 +69,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.block = false;
 	$scope.currentRound = 0;
 	$scope.interval = 0;
-	$scope.maxTime = 90;
+	$scope.maxTime = 90999;
+	$scope.gameStatus = 1;
 	$scope.currentResult = '-';
+	$scope.rounds = [0,0,0,0];
 
 	$scope.isPause = false;
 
@@ -187,7 +188,6 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 				}
 				if(pass){
 					$scope.currentQuestion.options.push(tempName);
-					// $scope.currentQuestion.options.push($scope.pokemons[tempRandom].name);
 				}
 			}
 		}
@@ -290,9 +290,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.block = true;
 		if($scope.currentQuestion.correctPokemon.name === target){
 			$scope.isCorrect = true;
-			$scope.resultAnsware = 'CORRECT';
+			$scope.resultAnsware = 'GREAT';
 			$scope.points += 5;
 			$scope.currentResult = '+5';
+			$scope.rounds[$scope.currentRound] = 1;
 		}else{
 			$scope.isCorrect = false;
 			$scope.resultAnsware = 'WRONG';
@@ -301,15 +302,20 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 				$scope.points = 0;
 			}
 			$scope.currentResult = '-5';
+			$scope.rounds[$scope.currentRound] = -1;
 		}
 		$scope.darked = false;
 		$scope.waiting = false;
-		setTimeout(function(){
-			$scope.$apply(function(){
-				$scope.currentRound ++;
-				$scope.randomQuestion();
-        	})
-		}, 1000);
+		// setTimeout(function(){
+		// 	$scope.$apply(function(){
+		// 		$scope.currentRound ++;
+		// 		if($scope.currentRound >= $scope.rounds.length){
+		// 			$scope.endGame();
+		// 		}else{
+		// 			$scope.randomQuestion();
+		// 		}
+  //       	})
+		// }, 1000);
 	}
 
 	$scope.saveScore = function(){
@@ -324,7 +330,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			$scope.pokemons = data.pokemons;
 			$scope.pokemons.sort(function(a, b){return a.id-b.id});
 			$scope.updateIDs();
-			// $scope.initQuiz();
+			$scope.initQuiz();
 		});
 }]);
 
