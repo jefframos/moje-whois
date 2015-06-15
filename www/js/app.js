@@ -165,6 +165,9 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.resetStatus();
 	}
 	$scope.randomQuestion = function() {
+		TweenLite.to(".result", 0, {css:{opacity:1}});
+		TweenLite.from(".result", 0.5, {css:{opacity:0}});
+
 		var ruleImgAfter = CSSRulePlugin.getRule(".image-container:after");
 		TweenLite.to(ruleImgAfter, 0, {cssRule:{borderColor:"#FFF", scale:1, opacity:0.7}});
 		TweenLite.from(ruleImgAfter, 0.3, {delay:0.2, cssRule:{scale:0.7}, ease:'easeOutBack'});
@@ -344,6 +347,11 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		var ruleImgBefore = CSSRulePlugin.getRule(".image-container:before");
 		TweenLite.to(ruleImgBefore, 0.2, {cssRule:{borderColor:colorTemp}});
 		TweenLite.to(ruleImgBefore, 0.5, {delay:0.7, cssRule:{opacity:0}});
+
+		TweenLite.to(".result", 0, {css:{opacity:0}});
+		TweenLite.from(".result", 0.3, {delay:0.5, css:{opacity:0}});
+		TweenLite.from(".result", 0.1, {css:{y:15}});
+		// TweenLite.from(".result", 0.5, {ease:"easeOutBack",css:{transform:"translateY(15px)"}});
 
 		TweenLite.to(".pokemon-container", 0.3, {css:{backgroundColor:colorTemp}});
 		TweenLite.to(".pokemon-container", 0.1, {delay:0.9,css:{ scale:0.8}});
