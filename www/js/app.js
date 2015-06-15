@@ -146,7 +146,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.ableMore = true;
 		$scope.unlock = false;
 		$scope.newHigh = false;
-		$scope.rounds = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		$scope.rounds = [0,0,0,0,0,0,0,0,0,0];
 	}
 	$scope.resetStatus();
 

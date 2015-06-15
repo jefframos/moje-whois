@@ -99,7 +99,7 @@ body {
 	left:0;
 	right:0;
 	margin: 0 auto;
-	top: 10px;
+	top: 265px;
 	color: #7d77b3;
 	pointer-events: none;
 }
@@ -107,27 +107,49 @@ body {
 	/*position: absolute;*/
 	font-family: 'brandon_grotesquemedium' !important;
 	display: inline-block;
-	margin: 0 5px;
+	margin: 0 4px;
 	width: 10px!important;
 	height: 10px!important;
 	border-radius: 15px;
 }
 .round-current {
-	background-color: #7d77b3 !important;
+	background-color: #FFF !important;
+	opacity: 1!important;
+}
+.round-current:after{
+	content:"";
+	display: block;
+	border-style: solid;
+    border-width: 1px;
+	border-color: white;
+	height: 18px!important;
+	width: 18px!important;
+	margin: -4px -4px;
+	left: 0;
+	right: 0;
+	top: 36px;
+	border-radius: 50%;
+	opacity: 0.8;
 }
 
 .round-correct {
-	background-color: #44bcb3 !important;
+	background-color: #59f5d6 !important;
 	color: white;
+	opacity: 1!important;
 }
 
 .round-wrong {
-	background-color: #ff5e63 !important;
+	background-color: #63487d !important;
 	color: white;
+	opacity: 1!important;
+}
+.round-wrong:after{
+	opacity: 0;
 }
 
 .round-default {
 	background-color: #EEE;
+	opacity: 0.5;
 }
 
 .center {
@@ -171,8 +193,8 @@ body {
 	padding-top: 8px;
 	font-size: 20px;
 	font-family: 'brandon_grotesquemedium' !important;
-	color: #a98235;
-	background: #fff289;
+	color: #e5868a;
+	background: #fff;
 	border-radius: 20px; }
 	.time i {
 	margin-right: 2px;
@@ -201,7 +223,7 @@ body {
 	left: 0;
 	right: 0;
 	margin: 0 auto;
-	bottom: 240px;
+	bottom: 235px;
 	color: white;
 	font-family: 'brandon_grotesquelight' !important;
 	font-size: 30px;
@@ -308,12 +330,12 @@ body {
 
 .pokemon-container {
 	background-color: white;
-	margin: 70px auto 12px;
+	margin: 45px auto 12px;
 	left: 0;
 	right: 0;
 	text-align: center;
-	height: 200px;
-	width: 200px;
+	height: 180px;
+	width: 180px;
 	overflow: hidden;
 	border-radius: 50%;
 }
@@ -324,12 +346,12 @@ body {
 	border-style: solid;
     border-width: 2px;
 	border-color: white;
-	height: 230px!important;
-	width: 230px!important;
+	height: 200px!important;
+	width: 200px!important;
 	margin: 0px auto 0px;
 	left: 0;
 	right: 0;
-	top: 56px;
+	top: 36px;
 	border-radius: 50%;
 	opacity: 0.8;
 }
@@ -340,12 +362,12 @@ body {
 	border-style: solid;
     border-width: 2px;
 	border-color: white;
-	height: 250px!important;
-	width: 250px!important;
+	height: 220px!important;
+	width: 220px!important;
 	margin: 0px auto 0px;
 	left: 0;
 	right: 0;
-	top: 46px;
+	top: 26px;
 	border-radius: 50%;
 	opacity: 0.4;
 }
