@@ -165,6 +165,23 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.resetStatus();
 	}
 	$scope.randomQuestion = function() {
+		var ruleImgAfter = CSSRulePlugin.getRule(".image-container:after");
+		TweenLite.to(ruleImgAfter, 0, {cssRule:{borderColor:"#FFF", scale:1, opacity:0.7}});
+		TweenLite.from(ruleImgAfter, 0.3, {delay:0.2, cssRule:{scale:0.7}, ease:'easeOutBack'});
+
+		var ruleImgBefore = CSSRulePlugin.getRule(".image-container:before");
+		TweenLite.to(ruleImgBefore, 0, {cssRule:{borderColor:"#FFF",scale:1, opacity:0.5}});
+		TweenLite.from(ruleImgBefore, 0.3, {delay:0.2, cssRule:{scale:0.6}, ease:'easeOutBack'});
+
+		TweenLite.to(".img-resize", 0, {css:{opacity:1}});
+		TweenLite.to(".pokemon-container", 0, {css:{scale:1}});
+
+		TweenLite.to(".pokemon-container", 0.3, {css:{backgroundColor:"#FFF"}});
+		TweenLite.from(".pokemon-container", 0.3, {delay:0.2, css:{scale:0.8}});
+		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{opacity:0}});
+		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{scale:0.5}, ease:'easeOutBack'});
+
+
 		$scope.time = $scope.maxTime;
 		$scope.resultAnsware = 'Who is she?';
 		$scope.currentResult = '-';
@@ -264,7 +281,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		clearInterval($scope.interval);
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
-				$scope.time --;
+				// $scope.time --;
 				if($scope.time <= 0){
 					clearInterval($scope.interval);
 					$scope.updateRound();
@@ -298,6 +315,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			return
 		}
 		$scope.block = true;
+		var colorTemp = '#59f5d6';
 		if($scope.currentQuestion.correctPokemon.name === target){
 			$scope.isCorrect = true;
 			$scope.resultAnsware = 'GREAT';
@@ -305,6 +323,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			$scope.currentResult = '+5';
 			$scope.rounds[$scope.currentRound] = 1;
 		}else{
+			colorTemp = '#63487d';
 			$scope.isCorrect = false;
 			$scope.resultAnsware = 'WRONG';
 			$scope.points -= 5;
@@ -316,6 +335,20 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		}
 		$scope.darked = false;
 		$scope.waiting = false;
+
+
+		var ruleImgAfter = CSSRulePlugin.getRule(".image-container:after");
+		TweenLite.to(ruleImgAfter, 0.2, {cssRule:{borderColor:colorTemp}});
+		TweenLite.to(ruleImgAfter, 0.5, {delay:0.6, cssRule:{opacity:0}});
+
+		var ruleImgBefore = CSSRulePlugin.getRule(".image-container:before");
+		TweenLite.to(ruleImgBefore, 0.2, {cssRule:{borderColor:colorTemp}});
+		TweenLite.to(ruleImgBefore, 0.5, {delay:0.7, cssRule:{opacity:0}});
+
+		TweenLite.to(".pokemon-container", 0.3, {css:{backgroundColor:colorTemp}});
+		TweenLite.to(".pokemon-container", 0.1, {delay:0.9,css:{ scale:0.8}});
+
+		clearInterval($scope.interval);
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.currentRound ++;

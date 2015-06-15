@@ -137,7 +137,9 @@ body {
 	color: white;
 	opacity: 1!important;
 }
-
+.round-correct:after{
+	opacity: 0;
+}
 .round-wrong {
 	background-color: #63487d !important;
 	color: white;
@@ -338,6 +340,12 @@ body {
 	width: 180px;
 	overflow: hidden;
 	border-radius: 50%;
+}
+.pokemon-container{
+	-webkit-transform: scale(1);
+    -o-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
 }
 .image-container:after{
 	content:"";

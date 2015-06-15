@@ -9,6 +9,10 @@
 
 		<!-- ionic/angularjs js -->
 		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<script src="lib/CSSPlugin.min.js"></script>
+		<script src="lib/CSSRulePlugin.min.js"></script>
+		<script src="lib/EasePack.min.js"></script>
+		<script src="lib/TweenLite.min.js"></script>
 
 		<!-- cordova script (this will be a 404 during development) -->
 		<script src="cordova.js"></script>
@@ -35,7 +39,7 @@
 						</div>
 
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
-							<div class="image-container">
+							<div class="image-container teste">
 								<div class="pokemon-container">
 									<img  class="img-resize" src="{{ currentQuestion.correctPokemon.url }}">
 								</div>
