@@ -70,7 +70,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.currentRound = 0;
 	$scope.interval = 0;
 	$scope.maxTime = 5;
-	$scope.gameStatus = 1;
+	$scope.gameStatus = 0;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
 
@@ -159,30 +159,21 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	}
 
 	$scope.backToInit = function() {
-		$scope.pageTitle = 'Who is that Pokemón?';
+		$scope.hideGame();
 		$scope.inGame = false;
-		$scope.gameStatus = 0;
 		$scope.resetStatus();
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.showInit();
+				$scope.pageTitle = 'Who is that Pokemón?';
+			})
+		}, 700);
+	}
+	$scope.showInit = function() {
+		$scope.gameStatus = 0;
 	}
 	$scope.randomQuestion = function() {
-		TweenLite.to(".result", 0, {css:{opacity:1}});
-		TweenLite.from(".result", 0.5, {css:{opacity:0}});
 
-		var ruleImgAfter = CSSRulePlugin.getRule(".image-container:after");
-		TweenLite.to(ruleImgAfter, 0, {cssRule:{borderColor:"#FFF", scale:1, opacity:0.7}});
-		TweenLite.from(ruleImgAfter, 0.3, {delay:0.2, cssRule:{scale:0.7}, ease:'easeOutBack'});
-
-		var ruleImgBefore = CSSRulePlugin.getRule(".image-container:before");
-		TweenLite.to(ruleImgBefore, 0, {cssRule:{borderColor:"#FFF",scale:1, opacity:0.5}});
-		TweenLite.from(ruleImgBefore, 0.3, {delay:0.2, cssRule:{scale:0.6}, ease:'easeOutBack'});
-
-		TweenLite.to(".img-resize", 0, {css:{opacity:1}});
-		TweenLite.to(".pokemon-container", 0, {css:{scale:1}});
-
-		TweenLite.to(".pokemon-container", 0.3, {css:{backgroundColor:"#FFF"}});
-		TweenLite.from(".pokemon-container", 0.3, {delay:0.2, css:{scale:0.8}});
-		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{opacity:0}});
-		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{scale:0.5}, ease:'easeOutBack'});
 
 
 		$scope.time = $scope.maxTime;
@@ -221,7 +212,46 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.currentQuestion.options.push($scope.currentQuestion.correctPokemon.name)
 		$scope.currentQuestion.options = shuffle($scope.currentQuestion.options);
 
+
+		TweenLite.to(".result", 0, {css:{opacity:1}});
+		TweenLite.from(".result", 0.5, {delay:0.2, css:{opacity:0}});
+
+		var ruleImgAfter = CSSRulePlugin.getRule(".image-container:after");
+		TweenLite.to(ruleImgAfter, 0, {cssRule:{borderColor:"#FFF", scale:1, opacity:0.7}});
+		TweenLite.from(ruleImgAfter, 0.3, {delay:0.2, cssRule:{scale:0.7}, ease:'easeOutBack'});
+
+		var ruleImgBefore = CSSRulePlugin.getRule(".image-container:before");
+		TweenLite.to(ruleImgBefore, 0, {cssRule:{borderColor:"#FFF",scale:1, opacity:0.5}});
+		TweenLite.from(ruleImgBefore, 0.3, {delay:0.2, cssRule:{scale:0.6}, ease:'easeOutBack'});
+
+		TweenLite.to(".img-resize", 0, {css:{opacity:1}});
+		TweenLite.to(".pokemon-container", 0, {css:{scale:1}});
+
+		TweenLite.to(".pokemon-container", 0.3, {css:{backgroundColor:"#FFF"}});
+		TweenLite.from(".pokemon-container", 0.3, {delay:0.2, css:{scale:0.8}});
+		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{opacity:0}});
+		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{scale:0.5}, ease:'easeOutBack'});
+
 		$scope.startInterval();
+	}
+	$scope.hideGame = function(force) {
+		TweenLite.to(".top-UI", force?0:0.3, {delay:force?0:0.1, css:{opacity:0}});
+		TweenLite.to(".pokemon-container", force?0:0.3, {delay:force?0:0.2,css:{opacity:0}});
+		TweenLite.to(".image-container", force?0:0.3, {delay:force?0:0.3,css:{opacity:0}});
+		TweenLite.to(".round-container", force?0:0.3, {delay:force?0:0.4,css:{opacity:0, y:10}});
+		TweenLite.to(".result", force?0:0.3, {delay:force?0:0.5,css:{opacity:0, y:10}});
+		TweenLite.to(".buttons-container", force?0:0.3, {delay:force?0:0.6,css:{opacity:0, y:10}});
+	}
+	$scope.showGame = function() {
+		$scope.hideGame(true);
+		$scope.gameStatus = 1;
+		$scope.initQuiz();
+		TweenLite.to(".top-UI", 0.3, {delay:0.1, css:{opacity:1}});
+		TweenLite.to(".pokemon-container", 0.3, {delay:0.2,css:{opacity:1}});
+		TweenLite.to(".image-container", 0.3, {delay:0.3,css:{opacity:1}});
+		TweenLite.to(".round-container", 0.3, {delay:0.4,css:{opacity:1, y:0}});
+		TweenLite.to(".result", 0.3, {delay:0.5,css:{opacity:1, y:0}});
+		TweenLite.to(".buttons-container", 0.3, {delay:0.6,css:{opacity:1, y:0}});
 	}
 	$scope.checkGen = function(targetId, add, able) {
 		if(!able){
@@ -381,7 +411,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			$scope.pokemons = data.pokemons;
 			$scope.pokemons.sort(function(a, b){return a.id-b.id});
 			$scope.updateIDs();
-			$scope.initQuiz();
+			// $scope.initQuiz();
 		});
 }]);
 

@@ -120,7 +120,7 @@ body {
 	content:"";
 	display: block;
 	border-style: solid;
-    border-width: 1px;
+	border-width: 1px;
 	border-color: white;
 	height: 18px!important;
 	width: 18px!important;
@@ -343,16 +343,16 @@ body {
 }
 .pokemon-container{
 	-webkit-transform: scale(1);
-    -o-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
+	-o-transform: scale(1);
+	-moz-transform: scale(1);
+	transform: scale(1);
 }
 .image-container:after{
 	content:"";
 	position: absolute;
 	display: block;
 	border-style: solid;
-    border-width: 2px;
+	border-width: 2px;
 	border-color: white;
 	height: 200px!important;
 	width: 200px!important;
@@ -368,7 +368,7 @@ body {
 	position: absolute;
 	display: block;
 	border-style: solid;
-    border-width: 2px;
+	border-width: 2px;
 	border-color: white;
 	height: 220px!important;
 	width: 220px!important;
@@ -434,9 +434,14 @@ span {
 	max-height: 50px !important;
 	position: relative;
 	border-radius: 0px!important;
-	border: 0 !important; }
+	border: 0 !important;}
 	.button-question:hover{
 		background-color: #efdff7 !important;
+		-webkit-transition: background-color 250ms linear;
+		-moz-transition: background-color 250ms linear;
+		-o-transition: background-color 250ms linear;
+		-ms-transition: background-color 250ms linear;
+		transition: background-color 250ms linear;
 	}
 	.button-question .first-li {
 	display: inline-block;
@@ -466,12 +471,23 @@ span {
 	background: #44bcb3 !important;
 	color: white !important;
 	box-shadow: 0 1px 0 #44bcb3 !important;
+	-webkit-transition: all 250ms linear;
+	-moz-transition: all 250ms linear;
+	-o-transition: all 250ms linear;
+	-ms-transition: all 250ms linear;
+	transition: all 250ms linear;
 	}
 
 	.button-question.wrong {
 	background: #ff5e63 !important;
 	box-shadow: 0 4px 0 #d34e52 !important;
-	color: white !important; }
+	color: white !important;
+	-webkit-transition: all 250ms linear;
+	-moz-transition: all 250ms linear;
+	-o-transition: all 250ms linear;
+	-ms-transition: all 250ms linear;
+	transition: all 250ms linear;
+	}
 
 .button-more {
 	background-color: #965EFF !important;
@@ -2750,17 +2766,21 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	border: 0;
 	vertical-align: baseline;
 	font: inherit;
-	font-size: 100%; }
+	font-size: 100%;
+}
 
 ol, ul {
-	list-style: none; }
+	list-style: none;
+}
 
 blockquote, q {
-	quotes: none; }
+	quotes: none;
+}
 
 blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
-	content: none; }
+	content: none;
+}
 
 /**
  * Prevent modern browsers from displaying `audio` without controls.
@@ -2768,16 +2788,19 @@ blockquote:before, blockquote:after, q:before, q:after {
  */
 audio:not([controls]) {
 	display: none;
-	height: 0; }
+	height: 0;
+}
 
 /**
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
 [hidden], template {
-	display: none; }
+	display: none;
+}
 
 script {
-	display: none !important; }
+	display: none !important;
+}
 
 /* ==========================================================================
 	 Base
@@ -2798,20 +2821,24 @@ html {
 	-ms-text-size-adjust: 100%;
 	/* 2 */
 	-webkit-text-size-adjust: 100%;
-	/* 2 */ }
+	/* 2 */
+	;
+}
 
 /**
  * Remove default margin.
  */
 body {
 	margin: 0;
-	line-height: 1; }
+	line-height: 1;
+}
 
 /**
  * Remove default outlines.
  */
 a, button, :focus, a:focus, button:focus, a:active, a:hover {
-	outline: 0; }
+	outline: 0;
+}
 
 /* *
  * Remove tap highlight color
@@ -2819,9 +2846,12 @@ a, button, :focus, a:focus, button:focus, a:active, a:hover {
 a {
 	-webkit-user-drag: none;
 	-webkit-tap-highlight-color: transparent;
-	-webkit-tap-highlight-color: transparent; }
-	a[href]:hover {
-	cursor: pointer; }
+	-webkit-tap-highlight-color: transparent;
+}
+
+a[href]:hover {
+	cursor: pointer;
+}
 
 /* ==========================================================================
 	 Typography
@@ -2830,13 +2860,15 @@ a {
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
 b, strong {
-	font-weight: bold; }
+	font-weight: bold;
+}
 
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
 dfn {
-	font-style: italic; }
+	font-style: italic;
+}
 
 /**
  * Address differences between Firefox and other browsers.
@@ -2844,32 +2876,37 @@ dfn {
 hr {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	height: 0; }
+	height: 0;
+}
 
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
 code, kbd, pre, samp {
 	font-size: 1em;
-	font-family: monospace, serif; }
+	font-family: monospace, serif;
+}
 
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
 pre {
-	white-space: pre-wrap; }
+	white-space: pre-wrap;
+}
 
 /**
  * Set consistent quote types.
  */
 q {
-	quotes: "\201C" "\201D" "\2018" "\2019"; }
+	quotes: "\201C" "\201D" "\2018" "\2019";
+}
 
 /**
  * Address inconsistent and variable font size in all browsers.
  */
 small {
-	font-size: 80%; }
+	font-size: 80%;
+}
 
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
@@ -2878,13 +2915,16 @@ sub, sup {
 	position: relative;
 	vertical-align: baseline;
 	font-size: 75%;
-	line-height: 0; }
+	line-height: 0;
+}
 
 sup {
-	top: -0.5em; }
+	top: -0.5em;
+}
 
 sub {
-	bottom: -0.25em; }
+	bottom: -0.25em;
+}
 
 /**
  * Define consistent border, margin, and padding.
@@ -2892,7 +2932,8 @@ sub {
 fieldset {
 	margin: 0 2px;
 	padding: 0.35em 0.625em 0.75em;
-	border: 1px solid #c0c0c0; }
+	border: 1px solid #c0c0c0;
+}
 
 /**
  * 1. Correct `color` not being inherited in IE 8/9.
@@ -7891,96 +7932,125 @@ a.button {
  * instead have colors which represent an emotion or generic theme.
  */
 .light, a.light {
-	color: #fff; }
+	color: #fff;
+}
 
 .light-bg {
-	background-color: #fff; }
+	background-color: #fff;
+}
 
 .light-border {
-	border-color: #ddd; }
+	border-color: #ddd;
+}
 
 .stable, a.stable {
-	color: #f8f8f8; }
+	color: #f8f8f8;
+}
 
 .stable-bg {
-	background-color: #f8f8f8; }
+	background-color: #f8f8f8;
+}
 
 .stable-border {
-	border-color: #b2b2b2; }
+	border-color: #b2b2b2;
+}
 
 .positive, a.positive {
-	color: #387ef5; }
+	color: #387ef5;
+}
 
 .positive-bg {
-	background-color: #387ef5; }
+	background-color: #387ef5;
+}
 
 .positive-border {
-	border-color: #0c60ee; }
+	border-color: #0c60ee;
+}
 
 .calm, a.calm {
-	color: #11c1f3; }
+	color: #11c1f3;
+}
 
 .calm-bg {
-	background-color: #11c1f3; }
+	background-color: #11c1f3;
+}
 
 .calm-border {
-	border-color: #0a9dc7; }
+	border-color: #0a9dc7;
+}
 
 .assertive, a.assertive {
-	color: #ef473a; }
+	color: #ef473a;
+}
 
 .assertive-bg {
-	background-color: #ef473a; }
+	background-color: #ef473a;
+}
 
 .assertive-border {
-	border-color: #e42112; }
+	border-color: #e42112;
+}
 
 .balanced, a.balanced {
-	color: #33cd5f; }
+	color: #33cd5f;
+}
 
 .balanced-bg {
-	background-color: #33cd5f; }
+	background-color: #33cd5f;
+}
 
 .balanced-border {
-	border-color: #28a54c; }
+	border-color: #28a54c;
+}
 
 .energized, a.energized {
-	color: #ffc900; }
+	color: #ffc900;
+}
 
 .energized-bg {
-	background-color: #ffc900; }
+	background-color: #ffc900;
+}
 
 .energized-border {
-	border-color: #e6b500; }
+	border-color: #e6b500;
+}
 
 .royal, a.royal {
-	color: #886aea; }
+	color: #886aea;
+}
 
 .royal-bg {
-	background-color: #886aea; }
+	background-color: #886aea;
+}
 
 .royal-border {
-	border-color: #6b46e5; }
+	border-color: #6b46e5;
+}
 
 .dark, a.dark {
-	color: #444; }
+	color: #444;
+}
 
 .dark-bg {
-	background-color: #444; }
+	background-color: #444;
+}
 
 .dark-border {
-	border-color: #111; }
+	border-color: #111;
+}
 
 [collection-repeat] {
 	/* Position is set by transforms */
 	left: 0 !important;
 	top: 0 !important;
 	position: absolute !important;
-	z-index: 1; }
+	z-index: 1;
+}
 
 .collection-repeat-container {
 	position: relative;
-	z-index: 1; }
+	z-index: 1;
+}
 
 .collection-repeat-after-container {
 	z-index: 0;

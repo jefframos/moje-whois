@@ -32,7 +32,7 @@
 						<div ng-class="{'deactive':gameStatus !== 0}">
 							<button  ng-class="{'active':true}" class="button button-block button-size button-question result correct label">{{highscore}} pts</button>
 							<ul class="list">
-								<li class="button button-block button-clear button-size button-question" ng-click="initQuiz()" >
+								<li class="button button-block button-clear button-size button-question" ng-click="showGame()" >
 									Play
 								</li>
 							</ul>
@@ -45,12 +45,13 @@
 								</div>
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
-							<button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button>
-							<button class="button button-clear white-refresh-ico restart" ng-click="restart()"></button>
-
-							<!-- <h3 class="points">{{points}}</h3> -->
-							<h3 class="time">{{time}}</h3>
-
+							<div class="top-UI">
+								<!-- <button class="button button-clear white-back-ico stop" ng-click="hideGame()"></button> -->
+								<button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button>
+								<button class="button button-clear white-refresh-ico restart" ng-click="restart()"></button>
+								<!-- <h3 class="points">{{points}}</h3> -->
+								<h3 class="time">{{time}}</h3>
+							</div>
 							<div class="round-container" >
 							  <div class="round round-default" ng-class="{'round-current':currentRound === $index, 'round-correct':round === 1, 'round-wrong':round === -1}" ng-repeat="round in rounds track by $index">
 							  <!-- {{$index + 1}} -->
