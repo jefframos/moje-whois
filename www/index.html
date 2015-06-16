@@ -37,10 +37,10 @@
 								</li>
 							</ul>
 						</div>
-
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
 							<div class="image-container teste">
 								<div class="pokemon-container">
+
 									<img  class="img-resize" src="{{ currentQuestion.correctPokemon.url }}">
 								</div>
 							</div>
@@ -69,8 +69,6 @@
 							<div class="end-game-modal">
 								<h1>You Get</h1>
 								<h2>{{points}}</h2>
-								<h1 ng-class="{'active':newHigh}">New Highscore</h1>
-								<button  ng-class="{'active':unlock}" class="button button-block button-size button-question result correct">You unlock a new level</button>
 								<button class="button button-clear red-back-ico stop" ng-click="backToInit()"></button>
 								<button class="button button-clear red-refresh-ico restart" ng-click="restart()"></button>
 							</div>
