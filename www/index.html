@@ -46,8 +46,8 @@
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
 							<div class="top-UI">
-								<!-- <button class="button button-clear white-back-ico stop" ng-click="hideGame()"></button> -->
-								<button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button>
+								<button class="button button-clear white-back-ico stop" ng-click="endGame()"></button>
+								<!-- <button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button> -->
 								<button class="button button-clear white-refresh-ico restart" ng-click="restart()"></button>
 								<!-- <h3 class="points">{{points}}</h3> -->
 								<h3 class="time">{{time}}</h3>

@@ -86,16 +86,6 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.isPause = false;
 		if($scope.inGame){
 			$scope.startInterval();
-			// clearInterval($scope.interval);
-			// $scope.interval = setInterval(function(){
-			// 	$scope.$apply(function(){
-			// 		$scope.time --;
-			// 		if($scope.time <= 0){
-			// 			clearInterval($scope.interval);
-			// 			$scope.updateRound();
-			// 		}
-			// 	})
-			// },1000);
 		}
 	}
 	for (var i = 0; i < $scope.generations.length; i++) {
@@ -108,7 +98,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		}
 	}
 	$scope.updateRound = function() {
-		$scope.clickQuestion('');
+		$scope.clickQuestion('timeEnd');
 	}
 	$scope.updateHighscore = function() {
 		var totHighs = 0;
@@ -147,6 +137,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.unlock = false;
 		$scope.newHigh = false;
 		$scope.rounds = [0,0,0,0,0,0,0,0,0,0];
+		clearInterval($scope.interval);
 	}
 	$scope.resetStatus();
 
@@ -154,27 +145,13 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.updateIDs();
 		$scope.resetStatus();
 		// $scope.randomQuestion();
-		$scope.initQuiz();
+		// $scope.initQuiz();
 		$scope.gameStatus = 1;
+		$scope.showGame();
 	}
 
-	$scope.backToInit = function() {
-		$scope.hideGame();
-		$scope.inGame = false;
-		$scope.resetStatus();
-		setTimeout(function(){
-			$scope.$apply(function(){
-				$scope.showInit();
-				$scope.pageTitle = 'Who is that Pokemón?';
-			})
-		}, 700);
-	}
-	$scope.showInit = function() {
-		$scope.gameStatus = 0;
-	}
+
 	$scope.randomQuestion = function() {
-
-
 
 		$scope.time = $scope.maxTime;
 		$scope.resultAnsware = 'Who is she?';
@@ -245,36 +222,45 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.showGame = function() {
 		$scope.hideGame(true);
 		$scope.gameStatus = 1;
-		$scope.initQuiz();
 		TweenLite.to(".top-UI", 0.3, {delay:0.1, css:{opacity:1}});
 		TweenLite.to(".pokemon-container", 0.3, {delay:0.2,css:{opacity:1}});
 		TweenLite.to(".image-container", 0.3, {delay:0.3,css:{opacity:1}});
 		TweenLite.to(".round-container", 0.3, {delay:0.4,css:{opacity:1, y:0}});
 		TweenLite.to(".result", 0.3, {delay:0.5,css:{opacity:1, y:0}});
 		TweenLite.to(".buttons-container", 0.3, {delay:0.6,css:{opacity:1, y:0}});
+		$scope.initQuiz();
+		setTimeout(function(){
+			$scope.$apply(function(){
+			})
+		}, 900);
 	}
+
+	$scope.backToInit = function() {
+		$scope.hideGame();
+		$scope.inGame = false;
+		$scope.resetStatus();
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.showInit();
+				$scope.pageTitle = 'Who is that Pokemón?';
+			})
+		}, 700);
+	}
+	$scope.showInit = function() {
+		$scope.gameStatus = 0;
+	}
+	$scope.showEnd = function() {
+		$scope.pageTitle = 'Congratulations!';
+		$scope.gameStatus = 2;
+		// TweenLite.from(".app-name", 0.3, {css:{opacity:0, y:-10}});
+		TweenLite.from(".end-game-modal", 0.3, {css:{opacity:0, y:0}});
+	}
+
 	$scope.checkGen = function(targetId, add, able) {
 		if(!able){
 			return;
 		}
-		// var has = false;
-		// for (var i = 0; i < $scope.currentGens.length; i++) {
-		// 	if($scope.currentGens[i] === targetId){
-		// 		has = true;
-		// 		if(!add){
-		// 			$scope.currentGens.splice(i,1);
-		// 		}else{
-		// 			return;
-		// 		}
-		// 	}
-		// }
-		// if(!has){
-		// 	$scope.currentGens.push(targetId);
-		// }
-
 		$scope.currentGens = [targetId];
-
-		// console.log($scope.currentGens);
 		$scope.updateIDs();
 		$scope.initQuiz();
 	}
@@ -300,21 +286,22 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.globalIds = shuffle($scope.globalIds);
 	}
 	$scope.initQuiz = function() {
-		console.log('init')
 		$scope.pageTitle = '';
 		$scope.inGame = true;
 		$scope.gameStatus = 1;
 		$scope.randomQuestion();
 		$scope.currentRound = 0;
-
-
 	}
 
 	$scope.startInterval = function() {
+		TweenLite.to(".time", 0, {css:{backgroundColor:"#e5868a"}});
+		TweenLite.to(".time", 0.3, {delay:0.3, css:{backgroundColor:"#FFF"}});
 		clearInterval($scope.interval);
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
 				// $scope.time --;
+				TweenLite.to(".time", 0.2, {css:{scale:0.8}});
+				TweenLite.to(".time", 0.2, {delay:0.2, css:{scale:1}});
 				if($scope.time <= 0){
 					clearInterval($scope.interval);
 					$scope.updateRound();
@@ -332,15 +319,20 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	}
 	$scope.endGame = function() {
 		// console.log($scope.currentGens[0], $scope.points)
-		$scope.pageTitle = 'Congratulations!';
+
 		if($scope.scores[$scope.currentGens[0]] < $scope.points){
 			$scope.scores[$scope.currentGens[0]] = $scope.points;
 			$scope.newHigh = true;
 			console.log('new high');
 		}
 		$scope.saveScore();
-		$scope.gameStatus = 2;
-		// $scope.backToInit();
+		$scope.hideGame();
+		clearInterval($scope.interval);
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.showEnd();
+			})
+		},1000);
 	}
 	$scope.clickQuestion = function(target) {
 		$scope.lastClicked = target;
@@ -365,6 +357,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			}
 			$scope.currentResult = '-5';
 			$scope.rounds[$scope.currentRound] = -1;
+		}
+		if(target === 'timeEnd'){
+			$scope.resultAnsware = "TIME'S UP";
+			TweenLite.to(".time", 0.2, {delay:0.4, css:{backgroundColor:"#e5868a"}});
 		}
 		$scope.darked = false;
 		$scope.waiting = false;
