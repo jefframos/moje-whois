@@ -308,7 +308,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		clearInterval($scope.interval);
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
-				// $scope.time --;
+				$scope.time --;
 				TweenLite.to(".time", 0.2, {css:{scale:0.8}});
 				TweenLite.to(".time", 0.2, {delay:0.2, css:{scale:1}});
 				if($scope.time <= 0){
