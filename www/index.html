@@ -29,8 +29,9 @@
 							<img ng-src="{{ tempURL }}">
 						</div>
 						<div ng-class="{'deactive':!isPause}" class="pause-modal" ng-click="unPause()">
-							<button class="button button-block button-clear button-size button-more continue-button" ng-click="unPause()">CONTINUE</button>
+							<button class="button button-block button-pause-init" ng-click="unPause()">CONTINUE</button>
 						</div>
+
 						<h3 class="main-color app-name" ng-class="{'deactive':pageTitle === ''}">{{pageTitle}}</h3>
 						<div class="in-game" ng-class="{'deactive':gameStatus !== 0}">
 							<img class="logo" src="img/logo-all.png">
@@ -44,7 +45,7 @@
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
 							<div class="image-container teste">
 								<div class="pokemon-container">
-									<span class="loading"> <img src="https://www.yugma.com/images/loading-animation-7.gif"/></span>
+									<span class="loading"></span>
 									<img  class="img-resize spinner" ng-src="{{ currentQuestion.correctPokemon.url }}" ng-cloak imageonload>
 								</div>
 							</div>

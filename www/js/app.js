@@ -103,6 +103,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			clearInterval($scope.interval);
 		}
 	}
+	// $scope.pause();
 	$scope.unPause = function() {
 		$scope.isPause = false;
 		if($scope.inGame){
@@ -249,17 +250,18 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.showGame = function() {
 		$scope.hideGame(true);
 		$scope.gameStatus = 1;
-		TweenLite.to(".top-UI", 0.3, {delay:0.1, css:{opacity:1}});
-		TweenLite.to(".pokemon-container", 0.3, {delay:0.2,css:{opacity:1}});
-		TweenLite.to(".image-container", 0.3, {delay:0.3,css:{opacity:1}});
-		TweenLite.to(".round-container", 0.3, {delay:0.4,css:{opacity:1, y:0}});
-		TweenLite.to(".result", 0.3, {delay:0.5,css:{opacity:1, y:0}});
-		TweenLite.to(".buttons-container", 0.3, {delay:0.6,css:{opacity:1, y:0}});
-		$scope.initQuiz();
+
 		setTimeout(function(){
 			$scope.$apply(function(){
+				TweenLite.to(".top-UI", 0.3, {delay:0.1, css:{opacity:1}});
+				TweenLite.to(".pokemon-container", 0.3, {delay:0.2,css:{opacity:1}});
+				TweenLite.to(".image-container", 0.3, {delay:0.3,css:{opacity:1}});
+				TweenLite.to(".round-container", 0.3, {delay:0.4,css:{opacity:1, y:0}});
+				TweenLite.to(".result", 0.3, {delay:0.5,css:{opacity:1, y:0}});
+				TweenLite.to(".buttons-container", 0.3, {delay:0.6,css:{opacity:1, y:0}});
+				$scope.initQuiz();
 			})
-		}, 900);
+		}, 500);
 	}
 
 	$scope.backToInit = function() {
@@ -269,7 +271,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.showInit();
-				$scope.pageTitle = '';
+				$scope.pageTitle = ' ';
 				$scope.resetStatus();
 			})
 		}, 700);
@@ -319,6 +321,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.pageTitle = '';
 		$scope.inGame = true;
 		$scope.gameStatus = 1;
+
 		$scope.preloadSrc = [];
 		for (var i = 0; i < $scope.rounds.length; i++) {
 			var currentPokemon = $scope.globalIds[i] - 1;
