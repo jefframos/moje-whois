@@ -59,7 +59,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.darked = true;
 	$scope.waiting = true;
 	$scope.resultAnsware = 'Who is She?';
-	$scope.pageTitle = 'Who is that Pokemón';
+	$scope.pageTitle = ' ';
 	$scope.isCorrect = false;
 	$scope.inGame = false;
 	$scope.generations = [[1,151,0],[152,251,100],[252,386,180],[387,493,260],[494,649,400]];
@@ -73,6 +73,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.gameStatus = 0;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
+	$scope.results = ['Blogger', 'Celebrity Blogger' , 'Expert Celebrity Blogger'];
 
 	$scope.isPause = false;
 
@@ -147,6 +148,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		// $scope.randomQuestion();
 		// $scope.initQuiz();
 		$scope.gameStatus = 1;
+		$scope.hideEnd();
 		$scope.showGame();
 	}
 
@@ -211,6 +213,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 
 		$scope.startInterval();
 	}
+	$scope.hideEnd = function(force) {
+		TweenLite.to(".end-game-modal", 0.3, {css:{opacity:0, y:0}});
+		TweenLite.to(".app-name", 0.3, {css:{opacity:0, y:-10}});
+	}
 	$scope.hideGame = function(force) {
 		TweenLite.to(".top-UI", force?0:0.3, {delay:force?0:0.1, css:{opacity:0}});
 		TweenLite.to(".pokemon-container", force?0:0.3, {delay:force?0:0.2,css:{opacity:0}});
@@ -237,12 +243,13 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 
 	$scope.backToInit = function() {
 		$scope.hideGame();
+		$scope.hideEnd();
 		$scope.inGame = false;
-		$scope.resetStatus();
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.showInit();
-				$scope.pageTitle = 'Who is that Pokemón?';
+				$scope.pageTitle = '';
+				$scope.resetStatus();
 			})
 		}, 700);
 	}
@@ -252,7 +259,9 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.showEnd = function() {
 		$scope.pageTitle = 'Congratulations!';
 		$scope.gameStatus = 2;
-		// TweenLite.from(".app-name", 0.3, {css:{opacity:0, y:-10}});
+		TweenLite.to(".app-name", 0, {css:{opacity:1, y:0}});
+		TweenLite.from(".app-name", 0.3, {css:{opacity:0, y:-10}});
+		TweenLite.to(".end-game-modal", 0, {css:{opacity:1, y:0}});
 		TweenLite.from(".end-game-modal", 0.3, {css:{opacity:0, y:0}});
 	}
 
@@ -319,13 +328,16 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	}
 	$scope.endGame = function() {
 		// console.log($scope.currentGens[0], $scope.points)
-
-		if($scope.scores[$scope.currentGens[0]] < $scope.points){
-			$scope.scores[$scope.currentGens[0]] = $scope.points;
-			$scope.newHigh = true;
-			console.log('new high');
-		}
-		$scope.saveScore();
+		var temp = $scope.points/$scope.rounds.length;
+		var idResult = 0;
+		// $scope.results
+		console.log($scope.results[Math.floor(temp * $scope.results.length)]);
+		$scope.points = $scope.results[Math.floor(temp * $scope.results.length)];
+		// if($scope.scores[$scope.currentGens[0]] < $scope.points){
+		// 	$scope.scores[$scope.currentGens[0]] = $scope.points;
+		// 	$scope.newHigh = true;
+		// }
+		// $scope.saveScore();
 		$scope.hideGame();
 		clearInterval($scope.interval);
 		setTimeout(function(){
@@ -344,14 +356,14 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		if($scope.currentQuestion.correctPokemon.name === target){
 			$scope.isCorrect = true;
 			$scope.resultAnsware = 'GREAT';
-			$scope.points += 5;
+			$scope.points ++;
 			$scope.currentResult = '+5';
 			$scope.rounds[$scope.currentRound] = 1;
 		}else{
 			colorTemp = '#63487d';
 			$scope.isCorrect = false;
 			$scope.resultAnsware = 'WRONG';
-			$scope.points -= 5;
+			// $scope.points -= 5;
 			if($scope.points < 0){
 				$scope.points = 0;
 			}

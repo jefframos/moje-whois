@@ -29,13 +29,14 @@
 							<button class="button button-block button-clear button-size button-more continue-button" ng-click="unPause()">CONTINUE</button>
 						</div>
 						<h3 class="main-color app-name" ng-class="{'deactive':pageTitle === ''}">{{pageTitle}}</h3>
-						<div ng-class="{'deactive':gameStatus !== 0}">
-							<button  ng-class="{'active':true}" class="button button-block button-size button-question result correct label">{{highscore}} pts</button>
-							<ul class="list">
-								<li class="button button-block button-clear button-size button-question" ng-click="showGame()" >
-									Play
-								</li>
-							</ul>
+						<div class="in-game" ng-class="{'deactive':gameStatus !== 0}">
+							<img class="logo" src="img/logo-all.png">
+							<button class="button button-block button-play-init" ng-click="showGame()" >
+								Play
+							</button>
+							<div class="button-more-init">
+								More Games
+							</div>
 						</div>
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
 							<div class="image-container teste">
@@ -46,8 +47,8 @@
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
 							<div class="top-UI">
-								<button class="button button-clear white-back-ico stop" ng-click="endGame()"></button>
-								<!-- <button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button> -->
+								<!-- <button class="button button-clear white-back-ico stop" ng-click="endGame()"></button> -->
+								<button class="button button-clear white-back-ico stop" ng-click="backToInit()"></button>
 								<button class="button button-clear white-refresh-ico restart" ng-click="restart()"></button>
 								<!-- <h3 class="points">{{points}}</h3> -->
 								<h3 class="time">{{time}}</h3>
@@ -67,7 +68,7 @@
 						</div>
 						<div class="end-game" ng-class="{'deactive':gameStatus !== 2}">
 							<div class="end-game-modal">
-								<h1>You Get</h1>
+								<h1>You are</h1>
 								<h2>{{points}}</h2>
 								<button class="button button-clear red-back-ico stop" ng-click="backToInit()"></button>
 								<button class="button button-clear red-refresh-ico restart" ng-click="restart()"></button>
