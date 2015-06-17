@@ -42,7 +42,7 @@
 							<div class="image-container teste">
 								<div class="pokemon-container">
 
-									<img  class="img-resize" src="{{ currentQuestion.correctPokemon.url }}">
+									<img  class="img-resize" ng-src="{{ currentQuestion.correctPokemon.url }}" ng-cloak>
 								</div>
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
