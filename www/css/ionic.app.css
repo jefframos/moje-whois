@@ -504,7 +504,7 @@ body {
 	transition: background-color 250ms linear;
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 620px) {
 	.pokemon-container {
 		height: 130px;
 		width: 130px;
@@ -521,6 +521,9 @@ body {
 	}
 	.round-container{
 		top: 205px;
+	}
+	.result{
+		bottom: 270px;
 	}
 }
 
