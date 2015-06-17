@@ -526,6 +526,38 @@ body {
 	}
 }
 
+@media screen and (max-height: 540px) {
+
+	.pokemon-container {
+		height: 100px;
+		width: 100px;
+	}
+	.image-container:before{
+		height: 115px!important;
+		width: 115px!important;
+		top: 38px;
+	}
+	.image-container:after{
+		height: 125px!important;
+		width: 125px!important;
+		top: 33px;
+		display: none;
+	}
+	.round-container{
+		top: 155px;
+	}
+	.result{
+		font-size: 18px;
+		bottom: 232px;
+	}
+	.time-container{
+		margin-top: 2px;
+	}
+	.buttons-container {
+		padding-bottom: 60px;
+	}
+}
+
 
 .list {
 	margin: 0 40px; }

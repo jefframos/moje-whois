@@ -89,7 +89,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.block = false;
 	$scope.currentRound = 0;
 	$scope.interval = 0;
-	$scope.maxTime = 10;
+	$scope.maxTime = 10000;
 	$scope.gameStatus = 0;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
