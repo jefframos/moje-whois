@@ -556,6 +556,9 @@ body {
 	.buttons-container {
 		padding-bottom: 60px;
 	}
+	.app-name {
+		padding: 25px 0!important;
+	}
 }
 
 
@@ -590,7 +593,8 @@ body {
 	font-family: 'brandon_grotesquelight' !important;
 	color: white;
 	text-align: center;
-	padding: 50px 0; }
+	padding: 50px 0;
+}
 
 span {
 	text-align: right !important; }
