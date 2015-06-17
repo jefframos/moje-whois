@@ -82,7 +82,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.pageTitle = ' ';
 	$scope.isCorrect = false;
 	$scope.inGame = false;
-	$scope.generations = [[1,24,0]];
+	$scope.generations = [[1,24 + 18,0]];
 	$scope.scores = [];
 	$scope.currentGens = [0];
 	$scope.globalIds = [];
@@ -164,6 +164,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.resetStatus();
 
 	$scope.restart = function() {
+		TweenLite.to(".result", 0, {css:{opacity:0}});
 		$scope.updateIDs();
 		$scope.resetStatus();
 		// $scope.randomQuestion();
@@ -250,7 +251,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.showGame = function() {
 		$scope.hideGame(true);
 		$scope.gameStatus = 1;
-
+		TweenLite.to(".result", 0, {css:{opacity:0}});
 		setTimeout(function(){
 			$scope.$apply(function(){
 				TweenLite.to(".top-UI", 0.3, {delay:0.1, css:{opacity:1}});
