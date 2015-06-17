@@ -25,6 +25,9 @@
 			<ion-pane>
 				<ion-content>
 					<div class="radial" ng-controller="DataController">
+						<div class="cache-images" ng-repeat="tempURL in preloadSrc">
+							<img ng-src="{{ tempURL }}">
+						</div>
 						<div ng-class="{'deactive':!isPause}" class="pause-modal" ng-click="unPause()">
 							<button class="button button-block button-clear button-size button-more continue-button" ng-click="unPause()">CONTINUE</button>
 						</div>
@@ -41,8 +44,8 @@
 						<div class="list card center in-game" ng-class="{'deactive':gameStatus !== 1}">
 							<div class="image-container teste">
 								<div class="pokemon-container">
-
-									<img  class="img-resize" ng-src="{{ currentQuestion.correctPokemon.url }}" ng-cloak>
+									<span class="loading"> <img src="https://www.yugma.com/images/loading-animation-7.gif"/></span>
+									<img  class="img-resize spinner" ng-src="{{ currentQuestion.correctPokemon.url }}" ng-cloak imageonload>
 								</div>
 							</div>
 							<div ng-class="{'active':!waiting , 'wrong': !isCorrect , 'correct': isCorrect}" class="result">{{ resultAnsware }}</div>
@@ -57,6 +60,10 @@
 							  <div class="round round-default" ng-class="{'round-current':currentRound === $index, 'round-correct':round === 1, 'round-wrong':round === -1}" ng-repeat="round in rounds track by $index">
 							  <!-- {{$index + 1}} -->
 							  </div>
+							<div class="time-container">
+							  	<div class="time-bar-back"></div>
+								<div class="time-bar"></div>
+							</div>
 							</div>
 							<div class="buttons-container">
 								<div ng-repeat="question in currentQuestion.options">

@@ -53,6 +53,26 @@ app.run(function($ionicPlatform) {
   });
 });
 
+app.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+          element.on('load', function() {
+          	console.log('imgloaded')
+            // Set visibility: true + remove spinner overlay
+              element.removeClass('spinner-hide');
+              element.addClass('spinner-show');
+              element.parent().find('span').remove();
+          });
+          scope.$watch('ngSrc', function() {
+            // Set visibility: false + inject temporary spinner overlay
+              element.addClass('spinner-hide');
+              // element.parent().append('<span class="spinner"></span>');
+          });
+        }
+    };
+});
+
 app.controller('DataController', ['$scope', 'JsonReaderService', function ($scope, JsonReaderService) {
 	$scope.pokemons = [];
 	$scope.currentQuestion = {};
@@ -69,12 +89,12 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.block = false;
 	$scope.currentRound = 0;
 	$scope.interval = 0;
-	$scope.maxTime = 5;
+	$scope.maxTime = 10;
 	$scope.gameStatus = 0;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
 	$scope.results = ['Blogger', 'Celebrity Blogger' , 'Expert Celebrity Blogger'];
-
+	$scope.preloadSrc = [];
 	$scope.isPause = false;
 
 	$scope.pause = function() {
@@ -137,7 +157,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.ableMore = true;
 		$scope.unlock = false;
 		$scope.newHigh = false;
-		$scope.rounds = [0,0,0,0,0,0,0,0,0,0];
+		$scope.rounds = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 		clearInterval($scope.interval);
 	}
 	$scope.resetStatus();
@@ -210,6 +230,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		TweenLite.from(".pokemon-container", 0.3, {delay:0.2, css:{scale:0.8}});
 		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{opacity:0}});
 		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{scale:0.5}, ease:'easeOutBack'});
+		TweenLite.to(".time-bar", 0.2, {css:{width:'100%'}});
 
 		$scope.startInterval();
 	}
@@ -298,6 +319,12 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.pageTitle = '';
 		$scope.inGame = true;
 		$scope.gameStatus = 1;
+		$scope.preloadSrc = [];
+		for (var i = 0; i < $scope.rounds.length; i++) {
+			var currentPokemon = $scope.globalIds[i] - 1;
+			$scope.preloadSrc.push($scope.pokemons[currentPokemon].url);
+		}
+		console.log($scope.preloadSrc)
 		$scope.randomQuestion();
 		$scope.currentRound = 0;
 	}
@@ -309,6 +336,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
 				$scope.time --;
+				TweenLite.to(".time-bar", 0.2, {css:{width:$scope.time / $scope.maxTime * 100+ '%'}});
 				TweenLite.to(".time", 0.2, {css:{scale:0.8}});
 				TweenLite.to(".time", 0.2, {delay:0.2, css:{scale:1}});
 				if($scope.time <= 0){
