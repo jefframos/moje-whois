@@ -82,7 +82,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.pageTitle = ' ';
 	$scope.isCorrect = false;
 	$scope.inGame = false;
-	$scope.generations = [[1,151,0],[152,251,100],[252,386,180],[387,493,260],[494,649,400]];
+	$scope.generations = [[1,24,0]];
 	$scope.scores = [];
 	$scope.currentGens = [0];
 	$scope.globalIds = [];
@@ -93,7 +93,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.gameStatus = 0;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
-	$scope.results = ['Blogger', 'Celebrity Blogger' , 'Expert Celebrity Blogger'];
+	$scope.results = ['Not so good', 'Almost good' , 'Good', 'Awesome' , 'Expert Celebrity Blogger'];
 	$scope.preloadSrc = [];
 	$scope.isPause = false;
 
@@ -336,7 +336,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
 				$scope.time --;
-				TweenLite.to(".time-bar", 0.2, {css:{width:$scope.time / $scope.maxTime * 100+ '%'}});
+				TweenLite.to(".time-bar", 1, {css:{width:($scope.time - 1) / ($scope.maxTime - 1) * 100+ '%'}, ease:'easeNoneLinear'});
 				TweenLite.to(".time", 0.2, {css:{scale:0.8}});
 				TweenLite.to(".time", 0.2, {delay:0.2, css:{scale:1}});
 				if($scope.time <= 0){
@@ -359,7 +359,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		var temp = $scope.points/$scope.rounds.length;
 		var idResult = 0;
 		// $scope.results
-		console.log($scope.results[Math.floor(temp * $scope.results.length)]);
+		console.log($scope.points, $scope.rounds.length, $scope.results[Math.floor(temp * $scope.results.length)]);
 		$scope.points = $scope.results[Math.floor(temp * $scope.results.length)];
 		// if($scope.scores[$scope.currentGens[0]] < $scope.points){
 		// 	$scope.scores[$scope.currentGens[0]] = $scope.points;
@@ -442,7 +442,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.updateHighscore();
 	}
 
-	JsonReaderService('pokemons')
+	JsonReaderService('celebs')
 		.success(function (data) {
 			$scope.pokemons = data.pokemons;
 			$scope.pokemons.sort(function(a, b){return a.id-b.id});

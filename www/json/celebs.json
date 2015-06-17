@@ -1,0 +1,28 @@
+{
+	"pokemons":[
+		{"id":"1","name":"Bryce Dallas Howard","url":"img/celebs/bryce_dallas_howard.jpg"},
+		{"id":"2","name":"Alexandra Daddario","url":"img/celebs/alexandra_daddario.jpg"},
+		{"id":"3","name":"Emilia Clarke","url":"img/celebs/emilia_clarke.jpg"},
+		{"id":"4","name":"Margot Robbie","url":"img/celebs/margot_robbie.jpg"},
+		{"id":"5","name":"Jamie Clayton","url":"img/celebs/jamie_clayton.jpg"},
+		{"id":"6","name":"Kate Upton","url":"img/celebs/kate_upton.jpg"},
+		{"id":"7","name":"Alicia Vikander","url":"img/celebs/alicia_vikander.jpg"},
+		{"id":"8","name":"Scarlett Johansson","url":"img/celebs/scarlett_johansson.jpg"},
+		{"id":"9","name":"Natalie Dormer","url":"img/celebs/natalie_dormer.jpg"},
+		{"id":"10","name":"Jennifer Lawrence","url":"img/celebs/jennifer_lawrence.jpg"},
+		{"id":"11","name":"Natalie Portman","url":"img/celebs/natalie_portman.jpg"},
+		{"id":"12","name":"Chloë Grace Moretz","url":"img/celebs/chloe_grace_moretz.jpg"},
+		{"id":"13","name":"Charlize Theron","url":"img/celebs/charlize_theron.jpg"},
+		{"id":"14","name":"Cara Delevingne","url":"img/celebs/cara_d.jpg"},
+		{"id":"15","name":"Emma Stone","url":"img/celebs/emma_stone.jpg"},
+		{"id":"16","name":"Emma Watson","url":"img/celebs/emma_watson.jpg"},
+		{"id":"17","name":"Abbey Lee","url":"img/celebs/abbey_lee.jpg"},
+		{"id":"18","name":"Elizabeth Banks","url":"img/celebs/elizabeth_banks.jpg"},
+		{"id":"19","name":"Gwendoline Christie","url":"img/celebs/gwendoline_christie.jpg"},
+		{"id":"20","name":"Eva Green","url":"img/celebs/eva_green.jpg"},
+		{"id":"21","name":"Blake Lively","url":"img/celebs/blake_lively.jpg"},
+		{"id":"22","name":"Maisie Williams","url":"img/celebs/maisie_williams.jpg"},
+		{"id":"23","name":"Mila Kunis","url":"img/celebs/mila_kunis.jpg"},
+		{"id":"24","name":"Kate Beckinsale","url":"img/celebs/kate_beckinsale.jpg"}
+	]
+}
