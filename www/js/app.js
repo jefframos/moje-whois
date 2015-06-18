@@ -82,7 +82,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.pageTitle = ' ';
 	$scope.isCorrect = false;
 	$scope.inGame = false;
-	$scope.generations = [[1,24 + 18,0]];
+	$scope.generations = [[1,26,0]];
 	$scope.scores = [];
 	$scope.currentGens = [0];
 	$scope.globalIds = [];
@@ -178,7 +178,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.randomQuestion = function() {
 
 		$scope.time = $scope.maxTime;
-		$scope.resultAnsware = 'Who is she?';
+		$scope.resultAnsware = 'Who is?';
 		$scope.currentResult = '-';
 		$scope.block = false;
 		$scope.darked = true;
@@ -238,6 +238,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.startInterval();
 	}
 	$scope.hideEnd = function(force) {
+		TweenLite.to(".result", 0, {css:{opacity:0}});
 		TweenLite.to(".end-game-modal", 0.3, {css:{opacity:0, y:0}});
 		TweenLite.to(".app-name", 0.3, {css:{opacity:0, y:-10}});
 	}
@@ -284,6 +285,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.showEnd = function() {
 		$scope.pageTitle = 'Congratulations!';
 		$scope.gameStatus = 2;
+		TweenLite.to(".result", 0, {css:{opacity:0}});
 		TweenLite.to(".app-name", 0, {css:{opacity:1, y:0}});
 		TweenLite.from(".app-name", 0.3, {css:{opacity:0, y:-10}});
 		TweenLite.to(".end-game-modal", 0, {css:{opacity:1, y:0}});
@@ -451,10 +453,11 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.updateHighscore();
 	}
 
-	JsonReaderService('celebs')
+	JsonReaderService('popstars')
 		.success(function (data) {
 			$scope.pokemons = data.pokemons;
 			$scope.pokemons.sort(function(a, b){return a.id-b.id});
+			$scope.generations = [[1,$scope.pokemons.length,0]];
 			$scope.updateIDs();
 			// $scope.initQuiz();
 		});
