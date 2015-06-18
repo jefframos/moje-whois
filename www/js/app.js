@@ -368,6 +368,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		var idResult = 0;
 		// $scope.results
 		console.log($scope.points, $scope.rounds.length, $scope.results[Math.floor(temp * $scope.results.length)]);
+		$scope.finalResult = $scope.points+' / '+$scope.rounds.length;
 		$scope.points = $scope.results[Math.floor(temp * $scope.results.length)];
 		// if($scope.scores[$scope.currentGens[0]] < $scope.points){
 		// 	$scope.scores[$scope.currentGens[0]] = $scope.points;

@@ -213,21 +213,22 @@ body {
 	left: 100px; }
 .time-container {
 	position: relative;
-	height: 6px;
-  	width: 80%;
+	height: 10px;
+  	width: 270px;
   	margin: 0 auto;
   	background: rgba(255,255,255,0.4);
-  	border-radius: 3px;
+  	border-radius: 5px;
   	margin-top: 10px;
 }
 .time-bar {
 	position: absolute;
 	left: 0;
 	right: 0;
-	width: 100%;
+	width: 266px;
 	height: 6px;
-	background: #e5868a;
+	background: #f24951;
 	border-radius: 3px;
+	margin: 2px;
 	transform-origin:center center;
 }
 
@@ -350,6 +351,11 @@ body {
 	width: 80%;
 	height: 80%  !important;
 	margin: auto; }
+	.end-game-modal h3 {
+	color: #8e65b4 !important;
+	font-family: 'brandon_grotesquelight' !important;
+	font-size: 30px;
+	padding-top: 30px; }
 	.end-game-modal h1 {
 	color: #4dbbb5 !important;
 	font-family: 'brandon_grotesquelight' !important;
@@ -359,8 +365,9 @@ body {
 	color: #8e65b4 !important;
 	font-family: 'brandon_grotesquelight' !important;
 	font-size: 30px;
-	margin: 45px 0;
-	padding-top: 10px;
+	margin-bottom: 45px;
+	margin-top: 15px;
+	/*padding-top: 10px;*/
 	padding-right: 40px;
 	padding-left: 40px; }
 	.end-game-modal .stop {
