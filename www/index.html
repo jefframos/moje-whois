@@ -7,6 +7,10 @@
 		<!-- compiled css output -->
 		<link href="css/ionic.app.css" rel="stylesheet">
 
+		<script type="text/javascript" src="http://cdn.gameplayer.io/api/js/game.js"></script>
+    	<script type="text/javascript" src="http://cdn.gameplayer.io/api/js/developer.js"></script>
+
+
 		<!-- ionic/angularjs js -->
 		<script src="lib/ionic/js/ionic.bundle.js"></script>
 		<script src="lib/CSSPlugin.min.js"></script>
@@ -38,7 +42,7 @@
 							<button class="button button-block button-play-init" ng-click="showGame()" >
 								Play
 							</button>
-							<div class="button-more-init">
+							<div class="button-more-init" id="more-games-button">
 								More Games
 							</div>
 						</div>
@@ -87,5 +91,83 @@
 				</ion-content>
 			</ion-pane>
 		</div>
+
+		<script type="text/javascript">
+			setTimeout(function(){
+				var SpilData = {
+					id: '576742227280295360' // Replace with the value you receive from Spil Games
+				};
+
+				GameAPI.loadAPI (function (apiInstance) {
+					console.log(apiInstance)
+
+					// adds a more games button to the screen
+			        var buttonProperties = apiInstance.Branding.getLink('more_games');
+
+			        // Creates a link element
+			        var link = document.getElementById('more-games-button');
+
+			        // assign the outgoing click
+			        link.href = "javascript:void(0);";
+			        link.onclick = buttonProperties.action;
+			        link.ontouchend = buttonProperties.action;
+			        link.setAttribute("id", "spilgames-more-games-btn");
+			        link.innerHTML = "More Games";
+			        // Other functions you can use of the Spil Game API have been removed in this code example
+
+			        // Retrieves the logo from Spil
+			        var logoData = apiInstance.Branding.getLogo();
+
+			        // Shows the logo only when it is configured; otherwise, ignore it.
+			        if (logoData.image) {
+			            // Creates an element and shows the image
+			            var logo = document.createElement('img');
+			            logo.src = logoData.image;
+			            if (logo.addEventListener) {
+			                logo.addEventListener('click', logoData.action);
+			                logo.addEventListener('touchend', logoData.action);
+			            } else if (logo.attachEvent) {
+			                logo.attachEvent('click', logoData.action);
+			                logo.attachEvent('touchend', logoData.action);
+			            }
+			            logo.className += " spilgames-branding-image";
+			            document.body.appendChild(logo);
+			        }
+
+			        apiInstance.Branding.displaySplashScreen(function(){
+                //APP.initApplication();
+            		});
+
+			        function pauseGame() {
+					    // Insert here the logic to pause your game
+					    if (window.console && window.console.log) {
+					        console.log('The advertisement is about to show, you should pause your game');
+					    }
+					}
+
+					function resumeGame() {
+					    // Insert here the logic to resume your game
+					    if (window.console && window.console.log) {
+					        console.log('The advertisment is shown and your game can now be resumed');
+					    }
+					}
+					GameAPI.GameBreak.request(pauseGame, resumeGame);
+
+				}, SpilData)
+			},100);
+		</script>
+		<style>
+		    .spilgames-branding-image{
+		        display: block;
+		        height: 40px;
+		        left: 0;
+		        right: 0;
+		        margin: 0 auto;
+		        bottom: 0px;
+		        position: absolute;
+		        z-index: 999;
+		    }
+	    </style>
 	</body>
+
 </html>
