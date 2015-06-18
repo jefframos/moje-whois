@@ -224,11 +224,11 @@ body {
 	position: absolute;
 	left: 0;
 	right: 0;
-	width: 80%;
+	width: 100%;
 	height: 6px;
 	background: #e5868a;
 	border-radius: 3px;
-	transform-origin:top left;
+	transform-origin:center center;
 }
 
 .time {

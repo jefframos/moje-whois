@@ -232,7 +232,8 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		TweenLite.from(".pokemon-container", 0.3, {delay:0.2, css:{scale:0.8}});
 		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{opacity:0}});
 		TweenLite.from(".img-resize", 0.3, {delay:0.3,css:{scale:0.5}, ease:'easeOutBack'});
-		TweenLite.to(".time-bar", 0.2, {css:{width:'100%'}});
+		// TweenLite.to(".time-bar", 0.2, {css:{width:'100%'}});
+		TweenLite.to(".time-bar", 0.2, {css:{scaleX:1}});
 
 		$scope.startInterval();
 	}
@@ -340,7 +341,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		$scope.interval = setInterval(function(){
 			$scope.$apply(function(){
 				$scope.time --;
-				TweenLite.to(".time-bar", 1, {css:{width:($scope.time - 1) / ($scope.maxTime - 1) * 100+ '%'}, ease:'easeNoneLinear'});
+				if($scope.time > 0){
+					TweenLite.to(".time-bar", 1, {css:{scaleX:($scope.time - 1) / ($scope.maxTime - 1)}, ease:'easeNoneLinear'});
+				}
+				// TweenLite.to(".time-bar", 1, {css:{width:($scope.time - 1) / ($scope.maxTime - 1) * 100+ '%'}, ease:'easeNoneLinear'});
 				TweenLite.to(".time", 0.2, {css:{scale:0.8}});
 				TweenLite.to(".time", 0.2, {delay:0.2, css:{scale:1}});
 				if($scope.time <= 0){
