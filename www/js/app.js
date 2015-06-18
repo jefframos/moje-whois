@@ -110,6 +110,10 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			$scope.startInterval();
 		}
 	}
+	setTimeout(function(){
+		GameAPI.GameBreak.request($scope.pause, $scope.unPause);
+	},500);
+
 	for (var i = 0; i < $scope.generations.length; i++) {
 		tempHigh = getSafeCookie('highscores'+i);
 		if(tempHigh && parseInt(tempHigh) >= 0 ){
