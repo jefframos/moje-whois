@@ -98,7 +98,6 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.isPause = false;
 
 	$scope.pause = function() {
-		alert('pause');
 		$scope.isPause = true;
 		if($scope.inGame){
 			clearInterval($scope.interval);
@@ -106,7 +105,6 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	}
 	// $scope.pause();
 	$scope.unPause = function() {
-		alert('unpause');
 		$scope.isPause = false;
 		if($scope.inGame){
 			$scope.startInterval();
