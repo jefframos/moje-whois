@@ -3,7 +3,21 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-
+window.addEventListener('keydown', function(e){
+    // console.log((e.keyCode));
+    if(e.keyCode === 49){
+        console.log('GameAPI.Award.submit({award:"award1"})');
+        GameAPI.Award.submit({award:'award1'});
+    }
+    else if(e.keyCode === 50){
+        console.log('GameAPI.Award.submit({award:"award2"})');
+        GameAPI.Award.submit({award:'award2'});
+    }
+    else if(e.keyCode === 51){
+        console.log('GameAPI.Award.submit({award:"award3"})');
+        GameAPI.Award.submit({award:'award3'});
+    }
+});
 //FIX resolution on iE
 (function() {
 	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
@@ -90,13 +104,17 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.currentRound = 0;
 	$scope.interval = 0;
 	$scope.maxTime = 5;
-	$scope.gameStatus = 0;
+	$scope.gameStatus = -1;
 	$scope.currentResult = '-';
 	$scope.rounds = [0,0,0,0];
 	$scope.results = ['Not so good', 'Almost good' , 'Good', 'Awesome' , 'Expert Celebrity Blogger'];
 	$scope.preloadSrc = [];
 	$scope.isPause = false;
-
+	setTimeout(function(){
+		$scope.$apply(function(){
+			$scope.gameStatus = 0;
+		})
+	},700);
 	$scope.pause = function() {
 		$scope.isPause = true;
 		if($scope.inGame){
@@ -384,6 +402,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		console.log($scope.points, $scope.rounds.length, $scope.results[Math.floor(temp * $scope.results.length)]);
 		$scope.finalResult = $scope.points+' / '+$scope.rounds.length;
 		$scope.points = $scope.results[Math.floor(temp * $scope.results.length)];
+		GameAPI.Award.submit({award:'award'+Math.floor(temp * $scope.results.length)+1});
 		// if($scope.scores[$scope.currentGens[0]] < $scope.points){
 		// 	$scope.scores[$scope.currentGens[0]] = $scope.points;
 		// 	$scope.newHigh = true;
