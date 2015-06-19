@@ -98,6 +98,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	$scope.isPause = false;
 
 	$scope.pause = function() {
+		alert('pause');
 		$scope.isPause = true;
 		if($scope.inGame){
 			clearInterval($scope.interval);
@@ -105,13 +106,22 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 	}
 	// $scope.pause();
 	$scope.unPause = function() {
+		alert('unpause');
 		$scope.isPause = false;
 		if($scope.inGame){
 			$scope.startInterval();
 		}
 	}
 	setTimeout(function(){
-		GameAPI.GameBreak.request($scope.pause, $scope.unPause);
+		GameAPI.GameBreak.request(function(){
+			$scope.$apply(function(){
+				$scope.pause();
+			})
+		},function(){
+			$scope.$apply(function(){
+				$scope.unPause();
+			})
+		});
 	},500);
 
 	for (var i = 0; i < $scope.generations.length; i++) {
