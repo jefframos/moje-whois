@@ -362,6 +362,7 @@ body {
 	font-size: 20px;
 	margin-bottom: 45px;
 	margin-top: 5px;
+	text-transform: none!important;
 	/*padding-top: 10px;*/
 	padding-right: 40px;
 	padding-left: 40px; }
@@ -374,7 +375,7 @@ body {
 	color: #8e65b4 !important;
 	font-family: 'brandon_grotesquelight' !important;
 	font-size: 25px;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 	margin-top: 15px;
 	/*padding-top: 10px;*/
 	padding-right: 40px;
