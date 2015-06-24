@@ -355,7 +355,16 @@ body {
 	color: #8e65b4 !important;
 	font-family: 'brandon_grotesquelight' !important;
 	font-size: 30px;
-	padding-top: 30px; }
+	padding-top: 35px; }
+	.end-game-modal h4 {
+	color: #4dbbb5 !important;
+	font-family: 'brandon_grotesquelight' !important;
+	font-size: 20px;
+	margin-bottom: 45px;
+	margin-top: 5px;
+	/*padding-top: 10px;*/
+	padding-right: 40px;
+	padding-left: 40px; }
 	.end-game-modal h1 {
 	color: #4dbbb5 !important;
 	font-family: 'brandon_grotesquelight' !important;
@@ -364,8 +373,8 @@ body {
 	.end-game-modal h2 {
 	color: #8e65b4 !important;
 	font-family: 'brandon_grotesquelight' !important;
-	font-size: 30px;
-	margin-bottom: 45px;
+	font-size: 25px;
+	margin-bottom: 30px;
 	margin-top: 15px;
 	/*padding-top: 10px;*/
 	padding-right: 40px;
