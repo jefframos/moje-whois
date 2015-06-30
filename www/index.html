@@ -6,28 +6,27 @@
 		<title></title>
 		<!-- compiled css output -->
 		<link href="css/ionic.app.css" rel="stylesheet">
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
 
 		<script type="text/javascript" src="http://cdn.gameplayer.io/api/js/game.js"></script>
     	<script type="text/javascript" src="http://cdn.gameplayer.io/api/js/developer.js"></script>
 
 
 		<!-- ionic/angularjs js -->
-		<script src="lib/ionic/js/ionic.bundle.min.js"></script>
 		<script src="lib/CSSPlugin.min.js"></script>
 		<script src="lib/CSSRulePlugin.min.js"></script>
 		<script src="lib/EasePack.min.js"></script>
 		<script src="lib/TweenLite.min.js"></script>
-
 		<!-- cordova script (this will be a 404 during development) -->
-		<script src="cordova.js"></script>
+		<!-- <script src="cordova.js"></script>-->
 
 		<!-- your app's js -->
 		<script src="js/app.js"></script>
 	</head>
 	<body ng-app="starter">
 		<div class="wrapper">
-			<ion-pane>
-				<ion-content>
+			<ion-pane >
+				<ion-content scroll="false">
 					<div class="radial" ng-controller="DataController">
 						<div class="cache-images" ng-repeat="tempURL in preloadSrc">
 							<img ng-src="{{ tempURL }}">
@@ -95,6 +94,13 @@
 
 		<script type="text/javascript">
 			setTimeout(function(){
+				// console.log(document.querySelectorAll('.pane'));
+				document.querySelectorAll('.pane')[0].classList.add('pane-ie');
+			},10);
+				// try{
+				// }catch(e){
+
+				// }
 				var SpilData = {
 					id: '576742227280295360' // Replace with the value you receive from Spil Games
 				};
@@ -155,7 +161,13 @@
 					// GameAPI.GameBreak.request(pauseGame, resumeGame);
 
 				}, SpilData)
-			},100);
+			// },0);
+
+		 document.body.addEventListener('keydown', function(e){
+		    if(e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40){
+
+		    }
+		});
 		</script>
 		<style>
 		    .spilgames-branding-image{

@@ -18,6 +18,13 @@
 //         GameAPI.Award.submit({award:'award3'});
 //     }
 // });
+
+window.addEventListener('scroll', function () {
+    // Do not scroll when keyboard is visible
+    if (document.activeElement === document.body && window.scrollY > 0) {
+        document.body.scrollTop = 0;
+    }
+}, true);
 //FIX resolution on iE
 (function() {
 	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {

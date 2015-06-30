@@ -78,7 +78,7 @@ body {
 
 .radial {
 	background: url(../img/radial.png) no-repeat transparent !important;
-	background-position: center !important;
+	background-position: top center !important;
 	height: 100%;
 }
 
@@ -109,11 +109,15 @@ body {
 	max-width: 58px !important; }
 
 .pane {
-
+	overflow: hidden;
 	background: -webkit-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Safari 5.1 to 6.0 */
 	background: -o-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(#46C7B5,#5BA2B4, #8470B3); /* Standard syntax */
+}
+
+.pane-ie {
+	background-color: #46C7B5!important; /* For Safari 5.1 to 6.0 */
 }
 
 .card {
