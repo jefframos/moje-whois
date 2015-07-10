@@ -79,7 +79,7 @@ app.directive('imageonload', function() {
         restrict: 'A',
         link: function(scope, element) {
           element.on('load', function() {
-          	console.log('imgloaded')
+          	// console.log('imgloaded')
             // Set visibility: true + remove spinner overlay
               element.removeClass('spinner-hide');
               element.addClass('spinner-show');
@@ -189,7 +189,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		if(newTotHighs > totHighs){
 			$scope.unlock = true;
 		}
-		console.log(totHighs, newTotHighs);
+		// console.log(totHighs, newTotHighs);
 	}
 	$scope.updateHighscore();
 
@@ -248,7 +248,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 						pass = false;
 						break;
 					}
-					console.log(tempName, $scope.currentQuestion.options[i])
+					// console.log(tempName, $scope.currentQuestion.options[i])
 				}
 				if(pass){
 					$scope.currentQuestion.options.push(tempName);
@@ -376,7 +376,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 			var currentPokemon = $scope.globalIds[i] - 1;
 			$scope.preloadSrc.push($scope.pokemons[currentPokemon].url);
 		}
-		console.log($scope.preloadSrc)
+		// console.log($scope.preloadSrc)
 		$scope.randomQuestion();
 		$scope.currentRound = 0;
 	}
@@ -414,7 +414,7 @@ app.controller('DataController', ['$scope', 'JsonReaderService', function ($scop
 		var temp = $scope.points/$scope.rounds.length;
 		var idResult = 0;
 		// $scope.results
-		console.log($scope.points, $scope.rounds.length, $scope.results[Math.floor(temp * ($scope.results.length-1))]);
+		// console.log($scope.points, $scope.rounds.length, $scope.results[Math.floor(temp * ($scope.results.length-1))]);
 		$scope.finalResult = $scope.points+' / '+$scope.rounds.length;
 		$scope.resultTitle = $scope.results[Math.floor(temp * ($scope.results.length-1))];
 		$scope.resultDesc = $scope.resultsDesc[Math.floor(temp * ($scope.resultsDesc.length-1))];
