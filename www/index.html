@@ -151,17 +151,17 @@
 			            if (logo.addEventListener) {
 			            	if(detectmob()){
 			                	logo.addEventListener('touchend', logoData.action);
-			                	return
 			            	}
-			                else
+			                else{
 			                	logo.addEventListener('click', logoData.action);
+			                }
 			            } else if (logo.attachEvent) {
 			            	if(detectmob()){
 			                	logo.attachEvent('touchend', logoData.action);
-			                	return
 			            	}
-			            	else
+			            	else{
 			                	logo.attachEvent('click', logoData.action);
+			            	}
 			            }
 			            logo.className += " spilgames-branding-image";
 			            document.body.appendChild(logo);
