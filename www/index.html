@@ -134,8 +134,11 @@
 
 			        // assign the outgoing click
 			        link.href = "javascript:void(0);";
-			        link.onclick = buttonProperties.action;
-			        link.ontouchend = buttonProperties.action;
+			        if(detectmob()){
+				        link.ontouchend = buttonProperties.action;
+				    }else{
+				        link.onclick = buttonProperties.action;
+				    }
 			        link.setAttribute("id", "spilgames-more-games-btn");
 			        link.innerHTML = "More Games";
 			        // Other functions you can use of the Spil Game API have been removed in this code example
